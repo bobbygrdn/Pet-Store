@@ -1,10 +1,13 @@
 const input = process.argv;
 const fs = require('fs');
 
+const exit = require('node:process');
+
 if (input.length < 3) {
 
     console.log('Usage: node pets.js [read | create | update | destroy]')
-    // This needs an exit process with a non-zero code
+
+    exit.exitCode = 1;
 };
 
 readData();
