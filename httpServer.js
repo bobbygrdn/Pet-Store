@@ -50,33 +50,11 @@ var server = http.createServer(function(req,res) {
             res.setHeader('Content-Type', 'application/json');
             res.end(petsJSON);
         });
-    } else if (req.method === 'GET' && req.url === '/pets/2') {
-        fs.readFile(dataPath, 'utf-8', function (err, petsJSON) {
-            if(err) {
-                console.error(err.stack);
-                res.statusCode = 500;
-                res.setHeader('Content-Type', 'text/plain');
-                return res.end('Internal Server Error')
-            };
-
-            res.statusCode = 404;
-            res.setHeader('Content-Type', 'text/plain');
-            return res.end('Not Found');
-        })
-    } else if (req.method === 'GET' && req.url === '/pets/-1') {
-        fs.readFile(dataPath, 'utf-8', function (err, petsJSON) {
-            if(err) {
-                console.error(err.stack);
-                res.statusCode = 500;
-                res.setHeader('Content-Type', 'text/plain');
-                return res.end('Internal Server Error')
-            };
-  
-            res.statusCode = 404;
-            res.setHeader('Content-Type', 'text/plain');
-            return res.end('Not Found');
-        })
-     };
+    } else {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Not found');
+    }
 });
 
 server.listen(port, function() {
