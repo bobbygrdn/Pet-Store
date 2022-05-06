@@ -30,7 +30,7 @@ app.get('/pets/:id', function(req,res){
 });
 
 app.post('/pets', function(req,res) {
-    res.send("testing");
+    res.send("Added new animal");
     var newObj = req.body;
 
     fs.readFile(petsPath, 'utf8', function (err, petsJSON){
