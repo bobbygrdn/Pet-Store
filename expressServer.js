@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 const petsPath = path.join(__dirname, 'pets.json');
 const fs = require('fs');
-const url = require('url')
 
 app.use(express.json());
 
