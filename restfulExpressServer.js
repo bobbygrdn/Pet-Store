@@ -6,16 +6,12 @@ const fs = require("fs");
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-    res.status(404).send("Not Found");
-})
-
 app.post("/pets", (req, res) => {
   
     var newObj = req.body;
   
     if (newObj.age === '' || newObj.kind === '' || newObj.name === '') {
-      res.statusCode = 404;
+      res.statusCode = 400;
       res.setHeader("Content-Type", "text/plain");
       res.send("Bad request");
     } else {
@@ -105,6 +101,10 @@ app.delete("/pets/:id", (req,res) => {
         };
     });
 });
+
+app.use((req, res, next) => {
+  res.status(404).send("Not Found");
+})
 
 app.listen(8000, function () {
   console.log("Running");
